@@ -4,6 +4,7 @@ import packageJson from "../../../../package.json";
 
 const NavBar = () => {
     return (
+        <div className="d-flex justify-content-between align-items-center">
             <ul className="nav">
                 <li className="nav-item">
                     <Link className="nav-link " aria-current="page" to="/">
@@ -15,8 +16,9 @@ const NavBar = () => {
                         Login
                     </Link>
                 </li>
-                <li className="nav-item">{packageJson.version}</li>
             </ul>
+            <div className="m-2">{packageJson.version}</div>
+        </div>
     );
 };
 
