@@ -4,15 +4,20 @@ import TextField from "../common/form/textField";
 import RadioField from "../common/form/radioField";
 import CheckBoxField from "../common/form/checkBoxField";
 import { validatorConfig } from "../../utils/validatorConfig";
+import { useAuth } from "../../hooks/useAuth";
+import { useHistory } from "react-router-dom";
 
 const RegisterForm = () => {
+    const history = useHistory();
     const [data, setData] = useState({
+        login: "",
         email: "",
         password: "",
         sex: "male",
         licence: false
     });
     const [errors, setErrors] = useState({});
+    const { signUp } = useAuth();
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
@@ -29,14 +34,26 @@ const RegisterForm = () => {
     };
     const isValid = Object.keys(errors).length === 0;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        // const {  } = data;
+        try {
+            await signUp(data);
+            history.push("/");
+        } catch (error) {
+            setErrors(error);
+        }
     };
     return (
         <form onSubmit={handleSubmit}>
+            <TextField
+                label="Login"
+                name="login"
+                value={data.login}
+                onChange={handleChange}
+                error={errors.login}
+            />
             <TextField
                 label="Email"
                 name="email"

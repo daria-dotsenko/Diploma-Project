@@ -1,4 +1,9 @@
 export const validatorConfig = {
+    login: {
+        isRequired: {
+            message: "Login is required"
+        },
+    },
     email: {
         isRequired: {
             message: "Email is required"
