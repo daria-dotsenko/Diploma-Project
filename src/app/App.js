@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from "./hooks/useAuth";
 import LogOut from "./layouts/logOut";
 import Start from "./layouts/start";
+import History from "./layouts/history";
+import UserProfile from "./components/user/userProfile";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
               <Switch>
                   <Route path="/login/:type?" component={Login} />
                   <Route path="/logout" component={LogOut} />
+                  <Route path="/history" component={History} />
+                  <Route path="/user/:edit?" component={UserProfile}/>
                   <Route path="/" exact component={Start} />
                   <Redirect to="/" />
               </Switch>

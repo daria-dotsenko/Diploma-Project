@@ -10,20 +10,34 @@ const NavBar = () => {
     return <>
         <nav className="navbar bg-light mb-3">
             <div className="container-fluid">
-                {currentUser &&
-                    <ul className="nav">
-                        <li className="nav-item">
+                <ul className="nav">
+                    {currentUser ? (
+                        <>
+                            <li className="nav-item">
+                                <Link className="nav-link" aria-current="page" to="/">
+                                    Main
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" aria-current="page" to="/history">
+                                    History
+                                </Link>
+                            </li>
+                        </>
+                    ) : (
+                        <>
                             <Link className="nav-link" aria-current="page" to="/">
                                 Main
                             </Link>
-                        </li>
-                    </ul>
-                }
-                <div className="d-flex">
-                    {currentUser ? <NavProfile /> : <Link className="nav-link" aria-current="page" to="/login">
-                        Login
-                    </Link>}
-                </div>
+                            <Link className="nav-link" aria-current="page" to="/login">
+                                Login
+                            </Link>
+                        </>
+                    )}
+                </ul>
+                {currentUser && <div className="d-flex">
+                    <NavProfile/>
+                </div>}
             </div>
         </nav>
     </>
