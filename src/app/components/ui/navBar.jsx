@@ -1,39 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import packageJson from "../../../../package.json";
-import { useAuth } from "../../hooks/useAuth";
+import {Link} from "react-router-dom";
+// import packageJson from "../../../../package.json";
+import {useAuth} from "../../hooks/useAuth";
+import NavProfile from "./navProfile";
 
 const NavBar = () => {
-    const { currentUser } = useAuth();
+    const {currentUser} = useAuth();
     console.log('currentUser', currentUser);
-    return (
-        <div className="d-flex justify-content-between align-items-center">
-            <ul className="nav">
-                <li className="nav-item">
-                    <Link className="nav-link " aria-current="page" to="/">
-                        Main
-                    </Link>
-                </li>
-                {!currentUser ? (
-                    <li className="nav-item">
-                        <Link className="nav-link " aria-current="page" to="/login">
-                            Login
-                        </Link>
-                    </li>
-                ) : (
-                    <li className="nav-item">
-                        <Link className="nav-link " aria-current="page" to="/logout">
-                            LogOut
-                        </Link>
-                    </li>
-                )}
-            </ul>
-            {currentUser && (
-                <div className="m-2">{currentUser.login}</div>
-            )}
-            <div className="m-2">{packageJson.version}</div>
-        </div>
-    );
+    return <>
+        <nav className="navbar bg-light mb-3">
+            <div className="container-fluid">
+                {currentUser &&
+                    <ul className="nav">
+                        <li className="nav-item">
+                            <Link className="nav-link" aria-current="page" to="/">
+                                Main
+                            </Link>
+                        </li>
+                    </ul>
+                }
+                <div className="d-flex">
+                    {currentUser ? <NavProfile /> : <Link className="nav-link" aria-current="page" to="/login">
+                        Login
+                    </Link>}
+                </div>
+            </div>
+        </nav>
+    </>
+    //     {/*<div className="m-2">{packageJson.version}</div>*/}
 };
 
 export default NavBar;
