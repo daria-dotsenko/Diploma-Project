@@ -60,6 +60,25 @@ const AuthProvider = ({ children }) => {
             }
         }
     };
+    async function editEmail(content) {
+        const url = `accounts:update?key=${process.env.REACT_APP_FIREBASE_KEY}`;
+        const email = content.email;
+        const idToken = localStorageService.getAccessToken();
+        try {
+            const { data } = await httpAuth.post(url, { idToken, email, returnSecureToken: true });
+            setTokens(data);
+            updateUserData(content);
+        } catch (error) {
+            errorCatcher(error);
+            const { code, message } = error.response.data.error;
+            if (code === 400) {
+                if (message === "EMAIL_EXISTS") {
+                    const errorObject = { email: "Пользователь с таким email уже существует" };
+                    throw errorObject;
+                }
+            }
+        }
+    };
     async function signIn({ email, password }) {
         const url = `accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_KEY}`;
         try {
@@ -122,7 +141,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [error]);
     return (
-        <AuthContext.Provider value={{ signUp, signIn, currentUser, logOut, updateUserData }}>
+        <AuthContext.Provider value={{ signUp, signIn, currentUser, logOut, updateUserData, editEmail }}>
             {!isLoading ? children : "Loading..."}
         </AuthContext.Provider>
     );

@@ -7,8 +7,8 @@ import {useHistory} from "react-router-dom";
 
 const UserProfile = () => {
     const history = useHistory();
-    const { currentUser, updateUserData } = useAuth()
-    const [data, setData] = useState(currentUser);
+    const { currentUser, editEmail } = useAuth()
+    const [data, setData] = useState(currentUser || { login: "", email: "", password: "" });
     const [errors, setErrors] = useState({});
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -25,13 +25,12 @@ const UserProfile = () => {
         return Object.keys(errors).length === 0;
     };
     const isValid = Object.keys(errors).length === 0;
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
         try {
-            await updateUserData(data);
+            await editEmail(data);
             history.push("/");
         } catch (error) {
             setErrors(error);
@@ -56,14 +55,14 @@ const UserProfile = () => {
                             onChange={handleChange}
                             error={errors.email}
                         />
-                        {/*<TextField*/}
-                        {/*    label="Password"*/}
-                        {/*    type="password"*/}
-                        {/*    name="password"*/}
-                        {/*    value={data.password}*/}
-                        {/*    onChange={handleChange}*/}
-                        {/*    error={errors.password}*/}
-                        {/*/>*/}
+                        <TextField
+                            label="Password"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            onChange={handleChange}
+                            error={errors.password}
+                        />
                         <button
                             className="btn btn-primary w-100 mx-auto"
                             type="submit"
