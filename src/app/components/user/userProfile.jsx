@@ -55,14 +55,14 @@ const UserProfile = () => {
                             onChange={handleChange}
                             error={errors.email}
                         />
-                        <TextField
-                            label="Password"
-                            type="password"
-                            name="password"
-                            value={data.password}
-                            onChange={handleChange}
-                            error={errors.password}
-                        />
+                        {/*<TextField*/}
+                        {/*    label="Password"*/}
+                        {/*    type="password"*/}
+                        {/*    name="password"*/}
+                        {/*    value={data.password}*/}
+                        {/*    onChange={handleChange}*/}
+                        {/*    error={errors.password}*/}
+                        {/*/>*/}
                         <button
                             className="btn btn-primary w-100 mx-auto"
                             type="submit"

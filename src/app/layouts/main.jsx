@@ -12,9 +12,10 @@ const Main = () => {
                 <div>
                     {/*<div className="row mt-5 mb-5">*/}
                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                        <CategoryCard category="Income"/>
-                        <CategoryCard category="Accounts"/>
-                        <CategoryCard category="Costs"/>
+                        {/*todo Change the names to ids*/}
+                        <CategoryCard category="income"/>
+                        <CategoryCard category="accounts"/>
+                        <CategoryCard category="costs"/>
                     </div>
                     <div className="row">
                         <AnalyticsCard/>

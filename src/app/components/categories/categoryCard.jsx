@@ -29,7 +29,7 @@ const CategoryCard = ({category}) => {
         return lines;
     };
     const createNewOperation = () => {
-        history.push("/operation");
+        history.push(`/operation/${category}`);
     }
 
     return <>

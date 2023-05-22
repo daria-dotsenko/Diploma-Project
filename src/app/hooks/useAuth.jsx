@@ -113,7 +113,8 @@ const AuthProvider = ({ children }) => {
         }
     }
     function errorCatcher(error) {
-        const { message } = error.response.data;
+        const responseError = error?.response?.data?.error;
+        const message = responseError?.message || null;
         setError(message);
     }
     async function getUserData() {

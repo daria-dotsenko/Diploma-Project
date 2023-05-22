@@ -6,10 +6,13 @@ import { useAuth } from "../../hooks/useAuth";
 import TextField from "./form/textField";
 import SelectField from "./form/selectField";
 import { nanoid } from "nanoid";
+import { useParams } from "react-router-dom";
 
 const NewOperation = () => {
+  const { type } = useParams();
+  console.log("type", type);
   // const history = useHistory();
-  const types = [{label: "Income", value: "p2G4iR"}, {label: "Costs", value: "x8B6jL"}]; // timelines
+  const types = type ? [] : [{label: "income", value: "p2G4iR"}, {label: "costs", value: "x8B6jL"}]; // timelines
   const categories = [{label: "food", value: "j8D3bT"}, {label: "household", value: "q2K9rS"}] // timelines
   const accounts = [{label: "Card", value: "w5Y2sN"}, {label: "Cash", value: "p9R6vM"}] // timelines
   const { currentUser } = useAuth();
@@ -63,7 +66,7 @@ const NewOperation = () => {
               />
               <SelectField
                   label="Type"
-                  defaultOption="Choose..."
+                  defaultOption={type ? type : "Choose..."}
                   options={types}
                   name="type"
                   onChange={handleChange}

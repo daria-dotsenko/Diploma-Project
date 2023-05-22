@@ -21,7 +21,7 @@ function App() {
                   <Route path="/login/:type?" component={Login} />
                   <Route path="/logout" component={LogOut} />
                   <Route path="/history" component={History} />
-                  <Route path="/operation" component={NewOperation} />
+                  <Route path="/operation/:type(income|costs|accounts)?" component={NewOperation} />
                   <Route path="/user/:edit?" component={UserProfile}/>
                   <Route path="/" exact component={Start} />
                   <Redirect to="/" />
