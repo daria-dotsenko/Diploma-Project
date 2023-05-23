@@ -17,7 +17,7 @@ const Button = ({ color, calledFunction, type, buttonStyle, children }) => {
 };
 
 Button.defaultProps = {
-    color: "secondary",
+    color: "primary",
     type: "rounded"
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
-import CategoryCard from "../components/categories/categoryCard";
-import AnalyticsCard from "../components/categories/analyticsCard";
+import CategoryCard from "../components/common/categories/categoryCard";
+import AnalyticsCard from "../components/common/categories/analyticsCard";
 import {useAuth} from "../hooks/useAuth";
 import {Link} from "react-router-dom";
 

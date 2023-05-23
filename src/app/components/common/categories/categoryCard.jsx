@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../common/button";
+import Button from "../button";
 import { useHistory } from "react-router-dom";
 
 const CategoryCard = ({category}) => {
