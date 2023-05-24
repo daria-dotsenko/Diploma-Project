@@ -2,6 +2,7 @@ import React from "react";
 import OperationsList from "../components/ui/operationsList";
 import Button from "../components/common/button";
 import {useHistory} from "react-router-dom";
+import { operations } from "../fakeApi";
 
 const History = () => {
     const history = useHistory();
@@ -18,7 +19,7 @@ const History = () => {
                         className="bi bi-plus"></i></Button>
                 </div>
             </div>
-            <OperationsList/>
+            <OperationsList operations={operations}/>
         </div>
     </>;
 };

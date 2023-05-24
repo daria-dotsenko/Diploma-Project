@@ -70,7 +70,7 @@ const categories = [
         type: "U1V2W3X4Y5"
     },
     {
-        name: "bank interest",
+        name: "bank_interest",
         _id: "c5d6e7",
         type: "U1V2W3X4Y5"
     },
@@ -109,15 +109,55 @@ const accounts = [
     }
 ];
 
-const operations = [
+export const operations = [
     {
         _id: "L4mN5oPq6rS7t8",
         userId: "L4WB6uGy6KYVHBRivoK89L4I8Qg2",
         amount: 1000,
+        type: "U1V2W3X4Y5",
+        categories: "m3n4o5",
+        account: "1",
+        comment: "",
+        created_at: "1671573258520"
+    },
+    {
+        _id: "L5mN5oPq6rS7t8",
+        userId: "L4WB6uGy6KYVHBRivoK89L4I8Qg2",
+        amount: 2000,
         type: "K1L2M3N4O5",
         categories: "y5z6a7",
         account: "1",
-        comment: "May payroll",
-        created_at: "1633573058520"
+        comment: "Payroll",
+        created_at: "1674571058520"
+    },
+    {
+        _id: "L6mN5oPq6rS7t8",
+        userId: "L4WB6uGy6KYVHBRivoK89L4I8Qg2",
+        amount: 3000,
+        type: "U1V2W3X4Y5",
+        categories: "j8D3bT",
+        account: "1",
+        comment: "",
+        created_at: "1677579058520"
+    },
+    {
+        _id: "L7mN5oPq6rS7t8",
+        userId: "L4WB6uGy6KYVHBRivoK89L4I8Qg2",
+        amount: 4000,
+        type: "K1L2M3N4O5",
+        categories: "y5z6a7",
+        account: "1",
+        comment: "",
+        created_at: "1676573058520"
+    },
+    {
+        _id: "L8mN5oPq6rS7t8",
+        userId: "L4WB6uGy6KYVHBRivoK89L4I8Qg2",
+        amount: 5000,
+        type: "K1L2M3N4O5",
+        categories: "y5z6a7",
+        account: "1",
+        comment: "",
+        created_at: "1679573058520"
     }
 ]
