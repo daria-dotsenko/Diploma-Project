@@ -3,7 +3,7 @@ import Button from "./button";
 import PropTypes from "prop-types";
 import Badge from "./badge";
 
-const Operation = ({ operation }) => {
+const Operation = ({ operation, onRemove }) => {
     const {_id, account, amount, categories, comment, created_at, type, userId} = operation;
     const date = new Date(Number(created_at));
     const day = date.getDate();
@@ -16,7 +16,7 @@ const Operation = ({ operation }) => {
         <div className="card mb-2">
             <div className="p-3 row align-items-start">
                 <div className="col-2">
-                    <p className="mb-1"><Badge color="secondary" content={formattedDate}/></p>
+                    <div className="mb-1"><Badge color="secondary" content={formattedDate}/></div>
                 </div>
                 <div className="col-4">
                     <p className="mb-1">Amount: {amount}</p>
@@ -29,7 +29,7 @@ const Operation = ({ operation }) => {
                 </div>
                 <div className="col d-flex justify-content-evenly">
                     <Button color="link"><i className="bi bi-pencil-fill"></i></Button>
-                    <Button color="link"><i className="bi bi-trash-fill"></i></Button>
+                    <Button calledFunction={() => onRemove(operation._id)} color="link"><i className="bi bi-trash-fill"></i></Button>
                 </div>
             </div>
         </div>

@@ -2,13 +2,15 @@ import React from "react";
 import OperationsList from "../components/ui/operationsList";
 import Button from "../components/common/button";
 import {useHistory} from "react-router-dom";
-import { operations } from "../fakeApi";
+// import { operations } from "../fakeApi";
+import { useOperations } from "../hooks/useOperations";
 
 const History = () => {
     const history = useHistory();
     const createNewOperation = () => {
         history.push(`/operation`);
     }
+    const {operations, createOperation, removeOperation, isLoading} = useOperations()
     return <>
         <div className="container">
             <div className="d-flex justify-content-between mb-4">

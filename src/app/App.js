@@ -12,23 +12,32 @@ import History from "./layouts/history";
 import UserProfile from "./components/user/userProfile";
 import NewOperation from "./components/common/newOperation";
 import {CategoriesProvider} from "./hooks/useCategories";
+import {OperationsProvider} from "./hooks/useOperations";
+import {TypesProvider} from "./hooks/useTypes";
+import {AccountsProvider} from "./hooks/useAccounts";
 
 function App() {
     return (
         <div>
             <AuthProvider>
-                <CategoriesProvider>
-                    <NavBar/>
-                    <Switch>
-                        <Route path="/login/:type?" component={Login}/>
-                        <Route path="/logout" component={LogOut}/>
-                        <Route path="/history" component={History}/>
-                        <Route path="/operation/:type(income|costs|accounts)?" component={NewOperation}/>
-                        <Route path="/user/:edit?" component={UserProfile}/>
-                        <Route path="/" exact component={Start}/>
-                        <Redirect to="/"/>
-                    </Switch>
-                </CategoriesProvider>
+                <AccountsProvider>
+                    <OperationsProvider>
+                        <CategoriesProvider>
+                            <TypesProvider>
+                                <NavBar/>
+                                <Switch>
+                                    <Route path="/login/:type?" component={Login}/>
+                                    <Route path="/logout" component={LogOut}/>
+                                    <Route path="/history" component={History}/>
+                                    <Route path="/operation/:type(income|costs|accounts)?" component={NewOperation}/>
+                                    <Route path="/user/:edit?" component={UserProfile}/>
+                                    <Route path="/" exact component={Start}/>
+                                    <Redirect to="/"/>
+                                </Switch>
+                            </TypesProvider>
+                        </CategoriesProvider>
+                    </OperationsProvider>
+                </AccountsProvider>
                 <ToastContainer/>
             </AuthProvider>
         </div>
