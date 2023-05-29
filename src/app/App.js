@@ -10,7 +10,7 @@ import LogOut from "./layouts/logOut";
 import Start from "./layouts/start";
 import History from "./layouts/history";
 import UserProfile from "./components/user/userProfile";
-import NewOperation from "./components/common/newOperation";
+import Operation from "./components/operations/operation";
 import {CategoriesProvider} from "./hooks/useCategories";
 import {OperationsProvider} from "./hooks/useOperations";
 import {TypesProvider} from "./hooks/useTypes";
@@ -29,7 +29,7 @@ function App() {
                                     <Route path="/login/:type?" component={Login}/>
                                     <Route path="/logout" component={LogOut}/>
                                     <Route path="/history" component={History}/>
-                                    <Route path="/operation/:type(income|costs|accounts)?" component={NewOperation}/>
+                                    <Route path="/operation/:type(income|costs|accounts)?/:operationId?" component={Operation}/>
                                     <Route path="/user/:edit?" component={UserProfile}/>
                                     <Route path="/" exact component={Start}/>
                                     <Redirect to="/"/>

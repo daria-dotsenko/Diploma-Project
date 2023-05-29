@@ -10,8 +10,19 @@ const operationsService = {
         const { data } = await httpService.get(operationsEndPoint);
         return data;
     },
+    getCurrentOperation: async (id) => {
+        const { data } = await httpService.get(operationsEndPoint + id);
+        return data;
+    },
     removeOperation: async (operationId) => {
         const { data } = await httpService.delete(operationsEndPoint + operationId);
+        return data;
+    },
+    updateOperation: async (payload) => {
+        const { data } = await httpService.patch(
+            operationsEndPoint + payload._id,
+            payload
+        );
         return data;
     }
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Operation from "../common/operation";
+import OperationDisplay from "../operations/operationDisplay";
 import Pagination from "../common/pagination";
 import { paginate } from "../../utils/paginate";
 import PropTypes from "prop-types";
@@ -7,7 +7,7 @@ import { useOperations } from "../../hooks/useOperations";
 
 const OperationsList = ({ operations }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const { removeOperation } = useOperations();
+    const { removeOperation, updateOperation } = useOperations();
     const pageSize = 3;
     const count = operations.length;
     const handlePageChange = (pageIndex) => {
@@ -15,12 +15,15 @@ const OperationsList = ({ operations }) => {
     };
     const handleRemoveOperation = (id) => {
         removeOperation(id);
-    }
+    };
+    // const handleUpdateOperation = (data) => {
+    //     updateOperation(data)
+    // };
     if (operations) {
         const operationsCrop = paginate(operations, currentPage, pageSize);
         return <>
             {operationsCrop.map((data) => (
-                <Operation key={data._id} operation={data} onRemove={handleRemoveOperation}/>
+                <OperationDisplay key={data._id} operation={data} onRemove={handleRemoveOperation}/>
             ))}
             <div className="d-flex justify-content-center">
                 <Pagination

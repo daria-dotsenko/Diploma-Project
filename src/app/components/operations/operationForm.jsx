@@ -1,48 +1,49 @@
-import React, {useState} from "react";
-// import {useHistory} from "react-router-dom";
-import {useAuth} from "../../hooks/useAuth";
+import React, { useState } from "react";
 // import {validator} from "../../utils/validator";
 // import {validatorConfig} from "../../utils/validatorConfig";
-import TextField from "./form/textField";
-import SelectField from "./form/selectField";
-import {useParams, useHistory} from "react-router-dom";
-import {useCategories} from "../../hooks/useCategories";
-import {useTypes} from "../../hooks/useTypes";
-import {useAccounts} from "../../hooks/useAccounts";
-import {useOperations} from "../../hooks/useOperations";
+import TextField from "../common/form/textField";
+import SelectField from "../common/form/selectField";
+import { useCategories } from "../../hooks/useCategories";
+import { useTypes } from "../../hooks/useTypes";
+import { useAccounts } from "../../hooks/useAccounts";
+import { useHistory, useParams } from "react-router-dom";
 
-const NewOperation = () => {
+const OperationForm = ({operationData, onSubmit, buttonName}) => {
     const history = useHistory();
-    const {type} = useParams();
-    const {currentUser} = useAuth();
-    const [data, setData] = useState({amount: "", type: "", category: "", account: "", comment: ""});
-    const { operations, createOperation, removeOperation } = useOperations();
+    const { type } = useParams();
+    const [data, setData] = useState(operationData);
     // const [errors, setErrors] = useState({});
 
-    const {categories, getCategory} = useCategories();
+    const {categories} = useCategories();
     const categoriesList = categories.map(category => ({
         label: category.name.charAt(0).toUpperCase() + category.name.slice(1),
         value: category._id
     }));
 
-    const {types, getType} = useTypes();
+    const {types} = useTypes();
     const typesList = types.map(type => ({
         label: type.name.charAt(0).toUpperCase() + type.name.slice(1),
         value: type._id
     }));
 
-    const {accounts, accountTypes, getAccount} = useAccounts();
+    const {accounts} = useAccounts();
     const accountsList = accounts.map(account => ({
         label: account.name,
         value: account._id
     }));
 
     const handleChange = (target) => {
-        console.log(target)
+        // console.log(target)
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
         }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(data);
+        history.goBack();
     };
     // useEffect(() => {
     //   validate();
@@ -53,21 +54,7 @@ const NewOperation = () => {
     //   return Object.keys(errors).length === 0;
     // };
     // const isValid = Object.keys(errors).length === 0;
-    const handleSubmit = async (e) => {
-        console.log("done")
-        e.preventDefault();
-        createOperation(data);
-        history.push("/history");
-        // const isValid = validate();
-        // if (!isValid) return;
-        // const newData = { ...data, qualities: data.qualities.map(q => q.value) };
-        // try {
-        //     await signUp(newData);
-        //     history.push("/");
-        // } catch (error) {
-        //     setErrors(error);
-        // }
-    };
+
     return (
         <div className="container mt-5">
             <div className="row">
@@ -121,7 +108,7 @@ const NewOperation = () => {
                             type="submit"
                             // disabled={!isValid}
                         >
-                            Create
+                            {buttonName}
                         </button>
                     </form>
                 </div>
@@ -130,4 +117,4 @@ const NewOperation = () => {
     );
 };
 
-export default NewOperation;
+export default OperationForm;
